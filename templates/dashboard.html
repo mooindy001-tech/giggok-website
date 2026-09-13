@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GIGGok Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="admin-wrap">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <h1>GIGGok Dashboard</h1>
+      <div><a class="btn secondary" href="/">หน้าเว็บ</a> <a class="btn" href="/logout">ออกจากระบบ</a></div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<div class="alert">{{ messages[0] }}</div>{% endif %}
+    {% endwith %}
+
+    <div class="admin-card" style="max-width:none;margin:20px 0">
+      <h2>เพิ่มผลงาน</h2>
+      <form method="post" class="form" style="max-width:none">
+        <label>ชื่อผลงาน</label>
+        <input name="title" required>
+        <label>รายละเอียด</label>
+        <textarea name="description" rows="4"></textarea>
+        <label>ลิงก์รูปภาพ (URL)</label>
+        <input name="image_url" placeholder="https://...">
+        <button class="btn" type="submit">บันทึกผลงาน</button>
+      </form>
+    </div>
+
+    <h2>รายการผลงาน</h2>
+    <div class="table-list">
+      {% for p in projects %}
+      <div class="item-row">
+        <div><strong>{{ p.title }}</strong><div class="small">{{ p.description }}</div></div>
+        <form method="post" action="/delete/{{ loop.index0 }}">
+          <button class="btn" type="submit">ลบ</button>
+        </form>
+      </div>
+      {% else %}
+      <p>ยังไม่มีผลงาน</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</body>
+</html>

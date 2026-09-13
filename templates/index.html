@@ -1,0 +1,86 @@
+
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GIGGok | รับออกแบบและรีโนเวทงานไฟฟ้า</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="/">GIGGok</a>
+    <div class="menu">
+      <a href="#services">บริการ</a>
+      <a href="#projects">ผลงาน</a>
+      <a href="#contact">ติดต่อ</a>
+      <a href="/admin">Admin</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>GIGGok งานระบบไฟฟ้า</h1>
+      <p>รับออกแบบระบบไฟฟ้า รีโนเวทงานไฟฟ้า บ้าน โรงงาน ร้านอาหาร ถอดแบบปริมาณ และจัดทำ BOQ</p>
+      <a class="btn" href="#contact">ติดต่อช่าง</a>
+    </div>
+    <div class="hero-card">
+      <h3>บริการครบในงานเดียว</h3>
+      <p>ออกแบบ • ตรวจหน้างาน • รีโนเวท • เดินระบบ • ถอดปริมาณ • BOQ</p>
+      <p><strong>โทร:</strong> 097-120-3587</p>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <h2>บริการของเรา</h2>
+    <div class="cards">
+      <div class="card"><h3>⚡ ออกแบบระบบไฟฟ้า</h3><p>งานบ้าน อาคาร ร้านค้า และโรงงาน พร้อมแบบใช้งาน</p></div>
+      <div class="card"><h3>🔧 รีโนเวทงานไฟฟ้า</h3><p>ปรับปรุงระบบเดิม แก้ไขตู้ไฟ สายไฟ แสงสว่าง และโหลด</p></div>
+      <div class="card"><h3>📋 BOQ / ถอดปริมาณ</h3><p>จัดทำรายการวัสดุ ค่าแรง จำนวน และราคาประมาณการ</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section alt">
+  <div class="container">
+    <h2>ผลงาน</h2>
+    <div class="projects">
+      {% if projects %}
+        {% for p in projects %}
+        <div class="project">
+          {% if p.image_url %}
+            <img src="{{ p.image_url }}" alt="{{ p.title }}">
+          {% else %}
+            <div style="height:220px;background:#ddd;display:grid;place-items:center;">ไม่มีรูป</div>
+          {% endif %}
+          <div class="body">
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>ยังไม่มีผลงานในระบบ สามารถเพิ่มผ่านหน้า Admin ได้ครับ</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <h2>ติดต่อ GIGGok</h2>
+    <div class="contact-box">
+      <div class="contact-item"><h3>โทรศัพท์</h3><p>097-120-3587</p></div>
+      <div class="contact-item"><h3>รับงาน</h3><p>ออกแบบไฟฟ้า • รีโนเวท • โรงงาน • ร้านอาหาร • บ้าน • BOQ</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">© 2026 GIGGok Electrical Service</footer>
+</body>
+</html>
