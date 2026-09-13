@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "data.json"
 
 ADMIN_USER = "admin"
-ADMIN_PASS = "1234"
+ADMIN_PASS = "AdmaimPammyza@475297"
 
 def load_data():
     if not DATA_FILE.exists():
